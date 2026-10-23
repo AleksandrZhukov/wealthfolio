@@ -21,6 +21,8 @@
     "nameRequired": "Name is required",
     "namePlaceholder": "Category name",
     "icon": "Icon",
+    "parent": "Parent category",
+    "topLevel": "None (top level)",
     "color": "Color",
     "hex": "Hex",
     "create": "Create Category",

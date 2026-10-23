@@ -13,6 +13,11 @@ import {
   FormLabel,
   FormMessage,
   Input,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
   Switch,
 } from "@wealthfolio/ui";
 
@@ -25,7 +30,11 @@ export interface CategoryFormValues {
   color?: string;
   icon?: string | null;
   excluded?: boolean;
+  parentId?: string | null;
 }
+
+// Select items need a string value; this one stands for "no parent".
+const TOP_LEVEL = "__top_level__";
 
 const PRESET_COLORS = [
   "#ef4444",
@@ -50,6 +59,8 @@ interface CategoryFormProps {
   initialExcluded?: boolean;
   /** An ancestor category is excluded — the switch renders disabled. */
   parentExcluded?: boolean;
+  /** Categories this one can be moved under; omit to hide the parent picker. */
+  parentOptions?: CategoryNode[];
 }
 
 export function CategoryForm({
@@ -61,6 +72,7 @@ export function CategoryForm({
   showExcludeToggle = false,
   initialExcluded = false,
   parentExcluded = false,
+  parentOptions,
 }: CategoryFormProps) {
   const { t } = useTranslation();
   const isEditing = !!category;
@@ -72,6 +84,7 @@ export function CategoryForm({
         color: z.string().optional(),
         icon: z.string().nullable().optional(),
         excluded: z.boolean().optional(),
+        parentId: z.string().nullable().optional(),
       }),
     [t],
   );
@@ -83,6 +96,7 @@ export function CategoryForm({
       color: category?.color ?? parentCategory?.color ?? PRESET_COLORS[0],
       icon: category?.icon ?? parentCategory?.icon ?? null,
       excluded: initialExcluded,
+      parentId: category?.parentId ?? null,
     },
   });
 
@@ -104,6 +118,42 @@ export function CategoryForm({
             </FormItem>
           )}
         />
+        {parentOptions && (
+          <FormField
+            control={form.control}
+            name="parentId"
+            render={({ field }) => {
+              const items = [
+                { value: TOP_LEVEL, label: t("spending:category.topLevel") },
+                ...parentOptions.map((p) => ({ value: p.id, label: p.name })),
+              ];
+              return (
+                <FormItem>
+                  <FormLabel>{t("spending:category.parent")}</FormLabel>
+                  <Select
+                    items={items}
+                    value={field.value ?? TOP_LEVEL}
+                    onValueChange={(v) => field.onChange(v === TOP_LEVEL ? null : v)}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {items.map((item) => (
+                        <SelectItem key={item.value} value={item.value}>
+                          {item.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
+          />
+        )}
         <FormField
           control={form.control}
           name="icon"

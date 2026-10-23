@@ -21,6 +21,8 @@
     "nameRequired": "이름을 입력해야 합니다",
     "namePlaceholder": "카테고리 이름",
     "icon": "아이콘",
+    "parent": "상위 카테고리",
+    "topLevel": "없음 (최상위)",
     "color": "색상",
     "hex": "Hex",
     "create": "카테고리 생성",

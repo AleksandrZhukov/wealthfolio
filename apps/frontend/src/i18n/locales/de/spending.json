@@ -21,6 +21,8 @@
     "nameRequired": "Name ist erforderlich",
     "namePlaceholder": "Kategoriename",
     "icon": "Symbol",
+    "parent": "Übergeordnete Kategorie",
+    "topLevel": "Keine (oberste Ebene)",
     "color": "Farbe",
     "hex": "Hex",
     "create": "Kategorie erstellen",

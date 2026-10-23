@@ -21,6 +21,7 @@ interface CategoryEditModalProps {
   showExcludeToggle?: boolean;
   initialExcluded?: boolean;
   parentExcluded?: boolean;
+  parentOptions?: CategoryNode[];
 }
 
 export function CategoryEditModal({
@@ -33,6 +34,7 @@ export function CategoryEditModal({
   showExcludeToggle,
   initialExcluded,
   parentExcluded,
+  parentOptions,
 }: CategoryEditModalProps) {
   const { t } = useTranslation();
   const isEditing = !!category;
@@ -67,6 +69,7 @@ export function CategoryEditModal({
           showExcludeToggle={showExcludeToggle}
           initialExcluded={initialExcluded}
           parentExcluded={parentExcluded}
+          parentOptions={parentOptions}
         />
       </DialogContent>
     </Dialog>

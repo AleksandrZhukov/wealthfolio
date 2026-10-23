@@ -235,6 +235,8 @@
     "excludedWithParent": "مستبعدة مع {{name}}",
     "hex": "Hex",
     "icon": "الأيقونة",
+    "parent": "الفئة الرئيسية",
+    "topLevel": "بلا (المستوى الأعلى)",
     "iconLabel": "الأيقونة: {{name}}",
     "namePlaceholder": "اسم الفئة",
     "nameRequired": "الاسم مطلوب",

@@ -118,6 +118,19 @@ export default function SpendingCategoriesPage() {
         ? INCOME_TAXONOMY
         : SAVINGS_TAXONOMY;
 
+  // Only leaf categories can move: the tree is two levels deep, so a category
+  // with subcategories can't sit under another one.
+  const selectedParentOptions = useMemo(() => {
+    if (!selectedCategory || selectedCategory.children?.length) return undefined;
+    const tree =
+      selectedCategory.taxonomyId === SPENDING_TAXONOMY
+        ? expenseTree
+        : selectedCategory.taxonomyId === INCOME_TAXONOMY
+          ? incomeTree
+          : savingsTree;
+    return tree.filter((c) => c.id !== selectedCategory.id);
+  }, [selectedCategory, expenseTree, incomeTree, savingsTree]);
+
   if (!settingsLoading && !isEnabled) {
     return <Navigate to="/settings/spending" replace />;
   }
@@ -176,11 +189,25 @@ export default function SpendingCategoriesPage() {
             : excludedCategoryIds.filter((id) => id !== selectedCategory.id);
           await settingsMutation.mutateAsync({ excludedCategoryIds: nextIds });
         }
+        const parentId =
+          values.parentId === undefined ? (selectedCategory.parentId ?? null) : values.parentId;
+        const parentChanged = parentId !== (selectedCategory.parentId ?? null);
+        const siblings = (
+          selectedCategory.taxonomyId === SPENDING_TAXONOMY
+            ? spending.data?.categories
+            : selectedCategory.taxonomyId === INCOME_TAXONOMY
+              ? income.data?.categories
+              : savings.data?.categories
+        )?.filter((c) => (c.parentId ?? null) === parentId);
         await updateCategory.mutateAsync({
           ...selectedCategory,
           name: values.name,
           color: values.color ?? selectedCategory.color,
           icon: values.icon ?? null,
+          parentId,
+          sortOrder: parentChanged
+            ? Math.max(-1, ...(siblings ?? []).map((c) => c.sortOrder)) + 1
+            : selectedCategory.sortOrder,
         });
         toast.success(t("settings:spending.categories.updated"));
         setVisibleModal(false);
@@ -319,6 +346,7 @@ export default function SpendingCategoriesPage() {
         showExcludeToggle={!!selectedCategory && selectedCategory.taxonomyId === SPENDING_TAXONOMY}
         initialExcluded={!!selectedCategory && excludedIds.has(selectedCategory.id)}
         parentExcluded={selectedParentExcluded}
+        parentOptions={selectedParentOptions}
       />
     </>
   );
