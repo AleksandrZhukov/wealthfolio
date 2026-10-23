@@ -793,6 +793,19 @@ export interface CashActivitySearchResponse {
   baseCurrency?: string | null;
 }
 
+/** Spending tracker settings: the toggle and the opted-in account list. */
+export interface SpendingSettings {
+  enabled: boolean;
+  accountIds: string[];
+  excludedCategoryIds: string[];
+}
+
+export interface SpendingSettingsUpdate {
+  enabled?: boolean;
+  accountIds?: string[];
+  excludedCategoryIds?: string[];
+}
+
 export interface SpendingReportRequest {
   /** Inclusive RFC3339 timestamp. */
   startDate: string;

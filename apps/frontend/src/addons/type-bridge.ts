@@ -85,6 +85,8 @@ import type {
   NetworkResponse as SDKNetworkResponse,
   Permission,
   SpendCategory,
+  SpendingSettings,
+  SpendingSettingsUpdate,
   SpendCategoryKind,
 } from "@wealthfolio/addon-sdk";
 import { isBaselineCategory } from "@wealthfolio/addon-sdk";
@@ -219,6 +221,8 @@ export interface InternalHostAPI {
   ): Promise<unknown>;
   unassignSpendingCategory(activityId: string, taxonomyId: string): Promise<void>;
   setSpendingEvent(activityId: string, eventId: string | null): Promise<unknown>;
+  getSpendingSettings(): Promise<SpendingSettings>;
+  updateSpendingSettings(update: SpendingSettingsUpdate): Promise<SpendingSettings>;
 
   searchCashActivities(request: CashActivitySearchRequest): Promise<CashActivitySearchResponse>;
   getSpendingReport(request: ReportRequest): Promise<MonthlyReport>;
@@ -794,6 +798,7 @@ export function createSDKHostAPIBridge(
       getBudget: internalAPI.getBudgetReadonly,
       getEvents: internalAPI.listSpendingEvents,
       getEventTypes: internalAPI.listSpendingEventTypes,
+      getSettings: internalAPI.getSpendingSettings,
       getReport: internalAPI.getSpendingReport,
       getCategories: internalAPI.getSpendCategories,
       getRules: async (): Promise<SDKCategorizationRule[]> => {
@@ -875,7 +880,17 @@ export function createSDKHostAPIBridge(
     "budgets",
     guard,
   );
-  const spending = { ...spendingCategorization, ...spendingActivities, ...spendingBudgets };
+  const spendingSettings = guardNamespace(
+    { updateSettings: internalAPI.updateSpendingSettings },
+    "spending-settings",
+    guard,
+  );
+  const spending = {
+    ...spendingCategorization,
+    ...spendingActivities,
+    ...spendingBudgets,
+    ...spendingSettings,
+  };
   const contributionLimits = guardNamespace(
     {
       getAll: internalAPI.getContributionLimit,

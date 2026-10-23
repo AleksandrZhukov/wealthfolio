@@ -4,6 +4,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- `spending.getSettings()`: Spending's settings, including its accounts and
+  excluded categories (`spending.getSettings`).
+- `spending.updateSettings(update)`: turn Spending on or off and set its
+  accounts and excluded categories (`spending-settings.updateSettings`, high
+  risk, in the new Spending Settings category). `accountIds` replaces the whole
+  list, so read it with `getSettings()` first and merge.
+
 ## [3.13.1] - 2026-11-18
 
 ### Changed

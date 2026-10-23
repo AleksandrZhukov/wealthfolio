@@ -55,7 +55,11 @@ import {
   unassignActivityCategory,
   setActivityEvent,
 } from "@/features/spending/adapters/cash-activities";
-import { getSpendingContext } from "@/features/spending/adapters/settings";
+import {
+  getSpendingContext,
+  getSpendingSettings,
+  updateSpendingSettings,
+} from "@/features/spending/adapters/settings";
 import { getBudgetReadonly, upsertBudgetTarget } from "@/features/spending/adapters/budget";
 import { listEvents, listEventTypes } from "@/features/spending/adapters/events";
 import { getSpendingReport } from "@/features/spending/adapters/reports";
@@ -501,6 +505,8 @@ export function createAddonHostAPI(
       assignSpendingCategory: assignActivityCategory,
       unassignSpendingCategory: unassignActivityCategory,
       setSpendingEvent: setActivityEvent,
+      getSpendingSettings,
+      updateSpendingSettings,
       searchCashActivities,
       getSpendingReport,
       getSpendCategories,

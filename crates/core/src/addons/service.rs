@@ -346,6 +346,7 @@ pub fn detect_addon_permissions(addon_files: &[AddonFile]) -> Vec<AddonPermissio
             "spending",
             vec![
                 "isEnabled",
+                "getSettings",
                 "getCategories",
                 "getContext",
                 "getBudget",
@@ -358,6 +359,12 @@ pub fn detect_addon_permissions(addon_files: &[AddonFile]) -> Vec<AddonPermissio
                 "rerunRules",
             ],
             "Access to spending reports, categories, and categorization rules",
+        ),
+        (
+            "spending-settings",
+            "spending",
+            vec!["updateSettings"],
+            "Turn Spending on or off and choose tracked accounts",
         ),
         (
             "budgets",

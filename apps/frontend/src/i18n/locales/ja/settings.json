@@ -1785,6 +1785,8 @@
       "spending_saveRule": "自動分類ルールを作成または更新",
       "spending_deleteRule": "自動分類ルールを削除",
       "spending_rerunRules": "取引に分類ルールを再適用",
+      "spending_getSettings": "支出機能の設定を表示",
+      "spending_updateSettings": "支出機能の設定を変更",
       "contributionLimits_getAll": "拠出上限を表示",
       "contributionLimits_create": "拠出上限を設定",
       "contributionLimits_update": "拠出上限を変更",

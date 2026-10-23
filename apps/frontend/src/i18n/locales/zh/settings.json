@@ -1785,6 +1785,8 @@
       "spending_saveRule": "创建或更新自动分类规则",
       "spending_deleteRule": "删除自动分类规则",
       "spending_rerunRules": "对交易重新应用分类规则",
+      "spending_getSettings": "查看支出功能设置",
+      "spending_updateSettings": "更改支出功能设置",
       "contributionLimits_getAll": "查看供款额度",
       "contributionLimits_create": "设置供款额度",
       "contributionLimits_update": "修改供款额度",

@@ -1812,6 +1812,8 @@
       "spending_saveRule": "建立或更新自動分類規則",
       "spending_deleteRule": "刪除自動分類規則",
       "spending_rerunRules": "對交易重新套用分類規則",
+      "spending_getSettings": "檢視支出功能設定",
+      "spending_updateSettings": "變更支出功能設定",
       "contributionLimits_getAll": "查看提撥額度",
       "contributionLimits_create": "設定提撥額度",
       "contributionLimits_update": "修改提撥額度",

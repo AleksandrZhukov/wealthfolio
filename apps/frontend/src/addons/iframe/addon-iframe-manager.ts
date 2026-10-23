@@ -376,6 +376,8 @@ export const ALLOWED_API_METHODS = new Set([
   "spending.unassignCategory",
   "spending.setEvent",
   "spending.upsertBudgetTarget",
+  "spending.getSettings",
+  "spending.updateSettings",
   "spending.searchCashActivities",
   "spending.getReport",
   "spending.getCategories",

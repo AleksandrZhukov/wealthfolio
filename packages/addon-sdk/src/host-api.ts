@@ -60,6 +60,8 @@ import type {
   TransferMatchCandidate,
   TransferMatchCandidateRequest,
   UpdateAssetProfile,
+  SpendingSettings,
+  SpendingSettingsUpdate,
 } from './data-types';
 
 export interface ActivitySearchFilters {
@@ -541,6 +543,15 @@ export interface SpendingAPI {
    * @returns Promise resolving to whether Spending is enabled
    */
   isEnabled(): Promise<boolean>;
+  /** Read the spending tracker settings, including which accounts feed it. */
+  getSettings(): Promise<SpendingSettings>;
+  /**
+   * Update the spending tracker settings. A sync addon that creates CASH or
+   * CREDIT_CARD accounts can opt them in here instead of asking the user to.
+   * `accountIds` replaces the whole list: read it with `getSettings()` first and
+   * merge, or the user's other accounts drop out of Spending.
+   */
+  updateSettings(update: SpendingSettingsUpdate): Promise<SpendingSettings>;
 
   /**
    * Search activities from accounts enabled for Spending, including their

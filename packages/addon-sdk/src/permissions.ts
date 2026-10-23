@@ -159,6 +159,7 @@ export const PERMISSION_CATEGORIES: PermissionCategory[] = [
       'View aggregate spending reports and categories, and manage categorization rules that auto-tag transactions',
     functions: [
       'isEnabled',
+      'getSettings',
       'getCategories',
       'getContext',
       'getBudget',
@@ -171,6 +172,14 @@ export const PERMISSION_CATEGORIES: PermissionCategory[] = [
       'rerunRules',
     ],
     riskLevel: 'medium',
+  },
+  {
+    id: 'spending-settings',
+    name: 'Spending Settings',
+    description:
+      'Turn Spending on or off and choose which accounts and categories it tracks',
+    functions: ['updateSettings'],
+    riskLevel: 'high',
   },
   {
     id: 'budgets',

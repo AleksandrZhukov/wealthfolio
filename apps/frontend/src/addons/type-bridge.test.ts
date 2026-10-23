@@ -690,12 +690,13 @@ describe("Spending integration grant separation", () => {
       functions: names.map((name) => ({ name, isDeclared: true, isDetected: false })),
     },
   ];
-  it("old Spending grants cannot write categories, events or budgets", () => {
+  it("old Spending grants cannot write categories, events, budgets or settings", () => {
     const internal = {
       assignSpendingCategory: vi.fn(),
       unassignSpendingCategory: vi.fn(),
       setSpendingEvent: vi.fn(),
       upsertBudgetTarget: vi.fn(),
+      updateSpendingSettings: vi.fn(),
     };
     const api = createSDKHostAPIBridge(
       internal as unknown as InternalHostAPI,
@@ -710,6 +711,7 @@ describe("Spending integration grant separation", () => {
           "assignCategory",
           "setEvent",
           "upsertBudgetTarget",
+          "updateSettings",
         ]),
       ),
     );
@@ -729,6 +731,9 @@ describe("Spending integration grant separation", () => {
         amount: "100",
       }),
     ).toThrow("budgets.upsertBudgetTarget");
+    expect(() => api.spending.updateSettings({ enabled: false })).toThrow(
+      "spending-settings.updateSettings",
+    );
     for (const method of Object.values(internal)) expect(method).not.toHaveBeenCalled();
   });
   it("maps taxonomy-qualified metadata writes only after explicit function grants", async () => {
@@ -753,6 +758,7 @@ describe("Spending integration grant separation", () => {
     expect(internal.setSpendingEvent).toHaveBeenCalledWith("a", null);
     expect(getPermissionCategory("activities")?.riskLevel).toBe("high");
     expect(getPermissionCategory("budgets")?.riskLevel).toBe("high");
+    expect(getPermissionCategory("spending-settings")?.riskLevel).toBe("high");
   });
   it("budget grants neither grant organization nor require it", async () => {
     const internal = {
