@@ -21,6 +21,8 @@
     "nameRequired": "Il nome è obbligatorio",
     "namePlaceholder": "Nome categoria",
     "icon": "Icona",
+    "parent": "Categoria principale",
+    "topLevel": "Nessuna (livello superiore)",
     "color": "Colore",
     "hex": "Hex",
     "create": "Crea categoria",

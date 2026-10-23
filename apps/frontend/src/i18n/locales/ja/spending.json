@@ -21,6 +21,8 @@
     "nameRequired": "名前は必須です",
     "namePlaceholder": "カテゴリ名",
     "icon": "アイコン",
+    "parent": "親カテゴリー",
+    "topLevel": "なし（最上位）",
     "color": "色",
     "hex": "16進数",
     "create": "カテゴリを作成",

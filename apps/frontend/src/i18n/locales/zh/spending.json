@@ -21,6 +21,8 @@
     "nameRequired": "名称为必填项",
     "namePlaceholder": "类别名称",
     "icon": "图标",
+    "parent": "父类别",
+    "topLevel": "无（顶级）",
     "color": "颜色",
     "hex": "十六进制",
     "create": "创建类别",

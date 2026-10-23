@@ -21,6 +21,8 @@
     "nameRequired": "名稱為必填",
     "namePlaceholder": "類別名稱",
     "icon": "圖示",
+    "parent": "父類別",
+    "topLevel": "無（頂層）",
     "color": "顏色",
     "hex": "十六進位",
     "create": "建立類別",
