@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
-import { useBackNavigation } from "@/pages/layouts/mobile-stack/use-mobile-stack";
+import { Navigate, useSearchParams } from "react-router-dom";
 
+import { useIsMobileViewport } from "@/hooks";
 import { useAccounts } from "@/hooks/use-accounts";
 import { useBalancePrivacy } from "@/hooks/use-balance-privacy";
 import { useTaxonomy } from "@/hooks/use-taxonomies";
@@ -10,14 +10,7 @@ import type { DateRange } from "@/lib/types";
 import { formatDateISO } from "@/lib/utils";
 import { useSettingsContext } from "@/lib/settings-provider";
 
-import {
-  Page,
-  PageContent,
-  PageHeader,
-  useAmountFormatting,
-  useDateFormatting,
-  useIsMobile,
-} from "@wealthfolio/ui";
+import { useAmountFormatting, useDateFormatting } from "@wealthfolio/ui";
 import { usePersistentState } from "@/hooks/use-persistent-state";
 
 import { CategoryTransactionsSheet } from "../components/reports/category-transactions-sheet";
@@ -151,10 +144,8 @@ export default function SpendingInsightsPage() {
   const dateFormatting = useDateFormatting();
 
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const goBack = useBackNavigation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const isMobile = useIsMobile();
+  const isMobile = useIsMobileViewport();
   const { settings } = useSettingsContext();
   const baseCurrency = settings?.baseCurrency ?? "USD";
   const appTimezone = settings?.timezone ?? undefined;
@@ -541,17 +532,18 @@ export default function SpendingInsightsPage() {
     />
   );
 
+  // Rendered as an /insights tab: the toolbar slot is pinned the same way the
+  // Income tab pins its selectors, since tab actions can't reach this state.
   return (
-    <Page>
-      <PageHeader
-        heading={isMobile ? undefined : t("spending:insightsPage.heading")}
-        onBack={() => {
-          if (window.history.length > 1) goBack();
-          else navigate("/dashboard?tab=spending");
-        }}
-        actions={periodToggle}
-      />
-      <PageContent className="space-y-5">
+    <>
+      <div className="space-y-5">
+        {isMobile ? (
+          <div className="flex justify-end">{periodToggle}</div>
+        ) : (
+          <div className="pointer-events-auto fixed end-2 top-4 z-20 flex items-center gap-2 lg:end-4">
+            {periodToggle}
+          </div>
+        )}
         {(customRange || customMonth) && (
           <p className="text-muted-foreground text-sm" data-testid="spending-selected-range">
             {customRange ? (
@@ -675,7 +667,7 @@ export default function SpendingInsightsPage() {
             onHeatmapCellClick={handleHeatmapCellClick}
           />
         )}
-      </PageContent>
+      </div>
 
       <CategoryTransactionsSheet
         open={!!activeCategory}
@@ -706,7 +698,7 @@ export default function SpendingInsightsPage() {
         timezone={appTimezone}
         currency={baseCurrency}
       />
-    </Page>
+    </>
   );
 }
 
