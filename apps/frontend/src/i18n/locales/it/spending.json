@@ -23,6 +23,7 @@
     "icon": "Icona",
     "parent": "Categoria principale",
     "topLevel": "Nessuna (livello superiore)",
+    "parentLockedByBudget": "Rimuovi prima gli obiettivi di budget di questa categoria. I budget valgono solo per le categorie di livello superiore.",
     "color": "Colore",
     "hex": "Hex",
     "create": "Crea categoria",

@@ -23,6 +23,7 @@
     "icon": "Icône",
     "parent": "Catégorie parente",
     "topLevel": "Aucune (niveau supérieur)",
+    "parentLockedByBudget": "Supprimez d'abord les objectifs budgétaires de cette catégorie. Les budgets ne s'appliquent qu'aux catégories de niveau supérieur.",
     "color": "Couleur",
     "hex": "Hex",
     "create": "Créer la catégorie",

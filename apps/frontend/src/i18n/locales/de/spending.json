@@ -23,6 +23,7 @@
     "icon": "Symbol",
     "parent": "Übergeordnete Kategorie",
     "topLevel": "Keine (oberste Ebene)",
+    "parentLockedByBudget": "Entferne zuerst die Budgetziele dieser Kategorie. Budgets gelten nur für Kategorien der obersten Ebene.",
     "color": "Farbe",
     "hex": "Hex",
     "create": "Kategorie erstellen",

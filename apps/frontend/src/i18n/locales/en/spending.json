@@ -23,6 +23,7 @@
     "icon": "Icon",
     "parent": "Parent category",
     "topLevel": "None (top level)",
+    "parentLockedByBudget": "Remove this category's budget targets before moving it. Budgets only apply to top-level categories.",
     "color": "Color",
     "hex": "Hex",
     "create": "Create Category",

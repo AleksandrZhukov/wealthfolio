@@ -22,6 +22,7 @@ interface CategoryEditModalProps {
   initialExcluded?: boolean;
   parentExcluded?: boolean;
   parentOptions?: CategoryNode[];
+  parentLocked?: boolean;
 }
 
 export function CategoryEditModal({
@@ -35,6 +36,7 @@ export function CategoryEditModal({
   initialExcluded,
   parentExcluded,
   parentOptions,
+  parentLocked,
 }: CategoryEditModalProps) {
   const { t } = useTranslation();
   const isEditing = !!category;
@@ -70,6 +72,7 @@ export function CategoryEditModal({
           initialExcluded={initialExcluded}
           parentExcluded={parentExcluded}
           parentOptions={parentOptions}
+          parentLocked={parentLocked}
         />
       </DialogContent>
     </Dialog>

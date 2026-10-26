@@ -29,6 +29,7 @@ import type { TaxonomyCategory } from "@/lib/types";
 import { CategoryEditModal } from "@/features/spending/components/category-edit-modal";
 import { CategoryItem, type CategoryNode } from "@/features/spending/components/category-item";
 import type { CategoryFormValues } from "@/features/spending/components/category-form";
+import { useBudget } from "@/features/spending/hooks/use-budget";
 import {
   useSpendingSettings,
   useSpendingSettingsMutation,
@@ -64,6 +65,7 @@ export default function SpendingCategoriesPage() {
   const spending = useTaxonomy(SPENDING_TAXONOMY);
   const income = useTaxonomy(INCOME_TAXONOMY);
   const savings = useTaxonomy(SAVINGS_TAXONOMY);
+  const budget = useBudget();
   const createCategory = useCreateCategory();
   const updateCategory = useUpdateCategory();
   const deleteCategory = useDeleteCategory();
@@ -130,6 +132,17 @@ export default function SpendingCategoriesPage() {
           : savingsTree;
     return tree.filter((c) => c.id !== selectedCategory.id);
   }, [selectedCategory, expenseTree, incomeTree, savingsTree]);
+
+  // Budget targets only apply to top-level categories, so moving one with a
+  // target would silently drop that target from the budget.
+  const selectedParentLocked =
+    !!selectedCategory &&
+    !selectedCategory.parentId &&
+    !!budget.data?.state.targets.some(
+      (target) =>
+        target.taxonomyId === selectedCategory.taxonomyId &&
+        target.categoryId === selectedCategory.id,
+    );
 
   if (!settingsLoading && !isEnabled) {
     return <Navigate to="/settings/spending" replace />;
@@ -347,6 +360,7 @@ export default function SpendingCategoriesPage() {
         initialExcluded={!!selectedCategory && excludedIds.has(selectedCategory.id)}
         parentExcluded={selectedParentExcluded}
         parentOptions={selectedParentOptions}
+        parentLocked={selectedParentLocked}
       />
     </>
   );
