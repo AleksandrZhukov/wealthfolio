@@ -50,3 +50,17 @@ it("hides the parent picker without parent options", () => {
   render(<CategoryForm category={coffee} onSubmit={vi.fn()} onCancel={vi.fn()} />);
   expect(screen.queryByRole("combobox", { name: "Parent category" })).toBeNull();
 });
+
+it("locks the parent picker for a category with a budget target", () => {
+  render(
+    <CategoryForm
+      category={home}
+      parentOptions={[food]}
+      parentLocked
+      onSubmit={vi.fn()}
+      onCancel={vi.fn()}
+    />,
+  );
+  expect(screen.getByRole("combobox", { name: "Parent category" })).toBeDisabled();
+  expect(screen.getByText(/budget targets/i)).toBeInTheDocument();
+});

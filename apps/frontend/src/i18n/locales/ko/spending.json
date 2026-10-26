@@ -23,6 +23,7 @@
     "icon": "아이콘",
     "parent": "상위 카테고리",
     "topLevel": "없음 (최상위)",
+    "parentLockedByBudget": "이동하기 전에 이 카테고리의 예산 목표를 삭제하세요. 예산은 최상위 카테고리에만 적용됩니다.",
     "color": "색상",
     "hex": "Hex",
     "create": "카테고리 생성",

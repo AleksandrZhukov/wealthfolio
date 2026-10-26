@@ -23,6 +23,7 @@
     "icon": "图标",
     "parent": "父类别",
     "topLevel": "无（顶级）",
+    "parentLockedByBudget": "移动前请先删除此类别的预算目标。预算仅适用于顶级类别。",
     "color": "颜色",
     "hex": "十六进制",
     "create": "创建类别",

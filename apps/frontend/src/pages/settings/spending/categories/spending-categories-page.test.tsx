@@ -17,6 +17,9 @@ vi.mock("@/features/spending/hooks/use-spending-settings", () => ({
   useSpendingSettings: () => ({ isEnabled: true, isLoading: false, excludedCategoryIds: [] }),
   useSpendingSettingsMutation: () => ({ mutateAsync: vi.fn(), isPending: false }),
 }));
+vi.mock("@/features/spending/hooks/use-budget", () => ({
+  useBudget: () => ({ data: undefined }),
+}));
 vi.mock("@/hooks/use-taxonomies", () => ({
   useTaxonomy: (taxonomyId: string) => ({
     data: {

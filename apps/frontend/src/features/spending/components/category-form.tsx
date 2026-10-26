@@ -61,6 +61,8 @@ interface CategoryFormProps {
   parentExcluded?: boolean;
   /** Categories this one can be moved under; omit to hide the parent picker. */
   parentOptions?: CategoryNode[];
+  /** The category has a budget target, which only top-level categories keep. */
+  parentLocked?: boolean;
 }
 
 export function CategoryForm({
@@ -73,6 +75,7 @@ export function CategoryForm({
   initialExcluded = false,
   parentExcluded = false,
   parentOptions,
+  parentLocked = false,
 }: CategoryFormProps) {
   const { t } = useTranslation();
   const isEditing = !!category;
@@ -134,6 +137,7 @@ export function CategoryForm({
                     items={items}
                     value={field.value ?? TOP_LEVEL}
                     onValueChange={(v) => field.onChange(v === TOP_LEVEL ? null : v)}
+                    disabled={parentLocked}
                   >
                     <FormControl>
                       <SelectTrigger>
@@ -148,6 +152,11 @@ export function CategoryForm({
                       ))}
                     </SelectContent>
                   </Select>
+                  {parentLocked && (
+                    <p className="text-muted-foreground text-xs">
+                      {t("spending:category.parentLockedByBudget")}
+                    </p>
+                  )}
                   <FormMessage />
                 </FormItem>
               );
