@@ -46,6 +46,7 @@ export default function PortfolioInsightsPage() {
   const accountFilter = useAccountScopeStore((state) => state.scope);
   const setAccountScope = useAccountScopeStore((state) => state.setScope);
   const [overviewToolbarActions, setOverviewToolbarActions] = useState<ReactNode | null>(null);
+  const [spendingToolbarActions, setSpendingToolbarActions] = useState<ReactNode | null>(null);
 
   const [customizeAction, setCustomizeAction] = useState<ReactNode | null>(null);
   const { isEnabled: spendingEnabled } = useSpendingSettings();
@@ -108,13 +109,14 @@ export default function PortfolioInsightsPage() {
         icon: Icons.Wallet,
         content: (
           <Suspense fallback={<DashboardLoader />}>
-            <SpendingInsightsPage />
+            <SpendingInsightsPage onToolbarActionsChange={setSpendingToolbarActions} />
           </Suspense>
         ),
+        actions: spendingToolbarActions,
       });
     }
     return items;
-  }, [accountFilter, holdingsActions, setAccountScope, spendingEnabled, t]);
+  }, [accountFilter, holdingsActions, setAccountScope, spendingEnabled, spendingToolbarActions, t]);
 
   return <SwipablePage views={views} defaultView="overview" withPadding={true} />;
 }
