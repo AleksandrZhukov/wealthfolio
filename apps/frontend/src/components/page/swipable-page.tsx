@@ -315,7 +315,7 @@ export function SwipablePage({
                 />
               </div>
               {/* Actions slot - renders current view's actions */}
-              <div className="ms-auto flex min-w-0 max-w-full items-center gap-2">
+              <div className="ms-auto flex max-w-full min-w-0 items-center gap-2">
                 {currentActions}
               </div>
             </div>
