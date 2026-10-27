@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { Navigate, useSearchParams } from "react-router-dom";
 
@@ -140,7 +140,13 @@ function previousMonthMatchingRange(range: ReportsRange, timezone?: string | nul
  */
 const VALID_STAGES: InsightsStage[] = ["where", "changed", "when"];
 
-export default function SpendingInsightsPage() {
+interface SpendingInsightsPageProps {
+  onToolbarActionsChange?: (actions: ReactNode | null) => void;
+}
+
+export default function SpendingInsightsPage({
+  onToolbarActionsChange,
+}: SpendingInsightsPageProps) {
   const dateFormatting = useDateFormatting();
 
   const { t } = useTranslation();
@@ -224,25 +230,34 @@ export default function SpendingInsightsPage() {
 
   // Picks live in the shared period and the persisted preference, never in the
   // URL, so back/forward cannot bring back an older period.
-  const selectPeriod = (next: ReportsPeriod) => {
-    setPersistedPeriod(next);
-    setSpendingInterval(next);
-    sharePeriod(next);
-    setPersistedMonth(null);
-  };
+  const selectPeriod = useCallback(
+    (next: ReportsPeriod) => {
+      setPersistedPeriod(next);
+      setSpendingInterval(next);
+      sharePeriod(next);
+      setPersistedMonth(null);
+    },
+    [setPersistedPeriod, setSpendingInterval, sharePeriod, setPersistedMonth],
+  );
 
-  const selectCustomMonth = (next: string | null) => {
-    setPersistedMonth(next);
-    if (next) setSharedPick({ kind: "month", monthKey: next });
-    else sharePeriod(period);
-  };
+  const selectCustomMonth = useCallback(
+    (next: string | null) => {
+      setPersistedMonth(next);
+      if (next) setSharedPick({ kind: "month", monthKey: next });
+      else sharePeriod(period);
+    },
+    [setPersistedMonth, setSharedPick, sharePeriod, period],
+  );
 
-  const selectCustomRange = (next: DateRange | undefined) => {
-    if (next && (!next.from || !next.to)) return;
-    setPersistedMonth(null);
-    if (next?.from && next.to) setSharedPick(rangePick({ from: next.from, to: next.to }));
-    else sharePeriod(period);
-  };
+  const selectCustomRange = useCallback(
+    (next: DateRange | undefined) => {
+      if (next && (!next.from || !next.to)) return;
+      setPersistedMonth(null);
+      if (next?.from && next.to) setSharedPick(rangePick({ from: next.from, to: next.to }));
+      else sharePeriod(period);
+    },
+    [setPersistedMonth, setSharedPick, sharePeriod, period],
+  );
 
   // ?stage=where|changed|when drives the page when present. A period named in
   // the URL (?period=, ?spendingMonth=, ?spendingFrom=&spendingTo=) is applied
@@ -512,6 +527,35 @@ export default function SpendingInsightsPage() {
     [appTimezone],
   );
 
+  const periodToggle = useMemo(
+    () => (
+      <SpendingPeriodSelector
+        value={customMonth || customRange ? null : period}
+        onValueChange={selectPeriod}
+        customMonth={customMonth}
+        customRange={customRange}
+        onCustomRangeChange={selectCustomRange}
+        maxMonth={maxPickerMonth}
+        onCustomMonthChange={selectCustomMonth}
+        appearance="header"
+      />
+    ),
+    [
+      customMonth,
+      customRange,
+      period,
+      selectPeriod,
+      selectCustomRange,
+      maxPickerMonth,
+      selectCustomMonth,
+    ],
+  );
+
+  useEffect(() => {
+    onToolbarActionsChange?.(isMobile ? null : periodToggle);
+    return () => onToolbarActionsChange?.(null);
+  }, [isMobile, onToolbarActionsChange, periodToggle]);
+
   // Gate the entire page when tracking is disabled — mirrors spending-budget-page.
   // Without this, disabling tracking from ModuleCard leaves Insights live and
   // continues rendering numbers the user explicitly opted out of seeing.
@@ -519,30 +563,11 @@ export default function SpendingInsightsPage() {
     return <Navigate to="/dashboard?tab=spending" replace />;
   }
 
-  const periodToggle = (
-    <SpendingPeriodSelector
-      value={customMonth || customRange ? null : period}
-      onValueChange={selectPeriod}
-      customMonth={customMonth}
-      customRange={customRange}
-      onCustomRangeChange={selectCustomRange}
-      maxMonth={maxPickerMonth}
-      onCustomMonthChange={selectCustomMonth}
-      appearance="header"
-    />
-  );
-
-  // Rendered as an /insights tab: the toolbar slot is pinned the same way the
-  // Income tab pins its selectors, since tab actions can't reach this state.
   return (
     <>
       <div className="space-y-5">
-        {isMobile ? (
+        {(isMobile || !onToolbarActionsChange) && (
           <div className="flex justify-end">{periodToggle}</div>
-        ) : (
-          <div className="pointer-events-auto fixed end-2 top-4 z-20 flex items-center gap-2 lg:end-4">
-            {periodToggle}
-          </div>
         )}
         {(customRange || customMonth) && (
           <p className="text-muted-foreground text-sm" data-testid="spending-selected-range">
