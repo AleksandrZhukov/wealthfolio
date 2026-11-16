@@ -1786,7 +1786,7 @@
       "spending_deleteRule": "删除自动分类规则",
       "spending_rerunRules": "对交易重新应用分类规则",
       "spending_getSettings": "查看支出功能设置",
-      "spending_updateSettings": "更改支出功能设置",
+      "spending-settings_updateSettings": "更改支出功能设置",
       "contributionLimits_getAll": "查看供款额度",
       "contributionLimits_create": "设置供款额度",
       "contributionLimits_update": "修改供款额度",
@@ -1867,6 +1867,10 @@
       "spending": {
         "name": "支出",
         "description": "查看汇总支出报告及类别，并管理自动标记交易的分类规则"
+      },
+      "spending-settings": {
+        "name": "支出设置",
+        "description": "开启或关闭支出功能，并选择要跟踪的账户和类别"
       },
       "budgets": {
         "name": "预算管理",

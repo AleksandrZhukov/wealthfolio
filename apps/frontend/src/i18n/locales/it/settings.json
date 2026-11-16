@@ -1865,7 +1865,7 @@
       "spending_deleteRule": "Eliminare regole di categorizzazione automatica",
       "spending_rerunRules": "Riapplicare le regole di categorizzazione alle transazioni",
       "spending_getSettings": "Visualizzare le impostazioni di Spese",
-      "spending_updateSettings": "Modificare le impostazioni di Spese",
+      "spending-settings_updateSettings": "Modificare le impostazioni di Spese",
       "contributionLimits_getAll": "Visualizzare i limiti di contribuzione",
       "contributionLimits_create": "Impostare i limiti di contribuzione",
       "contributionLimits_update": "Modificare i limiti di contribuzione",
@@ -1946,6 +1946,10 @@
       "spending": {
         "name": "Spese",
         "description": "Visualizzare report aggregati e categorie di spesa e gestire le regole che categorizzano automaticamente le transazioni"
+      },
+      "spending-settings": {
+        "name": "Impostazioni delle spese",
+        "description": "Attivare o disattivare Spese e scegliere quali conti e categorie monitorare"
       },
       "budgets": {
         "name": "Gestione dei budget",

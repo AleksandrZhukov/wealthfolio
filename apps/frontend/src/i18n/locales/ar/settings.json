@@ -2021,7 +2021,7 @@
       "spending_deleteRule": "حذف قواعد التصنيف التلقائي",
       "spending_rerunRules": "إعادة تطبيق قواعد التصنيف على معاملاتك",
       "spending_getSettings": "عرض إعدادات الإنفاق",
-      "spending_updateSettings": "تغيير إعدادات الإنفاق",
+      "spending-settings_updateSettings": "تغيير إعدادات الإنفاق",
       "contributionLimits_getAll": "عرض حدود المساهمات",
       "contributionLimits_create": "تعيين حدود المساهمات",
       "contributionLimits_update": "تعديل حدود المساهمات",
@@ -2102,6 +2102,10 @@
       "spending": {
         "name": "الإنفاق",
         "description": "عرض تقارير الإنفاق المجمعة وفئاته وإدارة قواعد التصنيف التي تضع وسوماً للمعاملات تلقائياً"
+      },
+      "spending-settings": {
+        "name": "إعدادات الإنفاق",
+        "description": "تشغيل الإنفاق أو إيقافه واختيار الحسابات والفئات التي يتتبعها"
       },
       "budgets": {
         "name": "إدارة الميزانيات",

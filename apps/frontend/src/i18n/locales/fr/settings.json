@@ -1865,7 +1865,7 @@
       "spending_deleteRule": "Supprimer des règles de catégorisation automatique",
       "spending_rerunRules": "Réappliquer les règles de catégorisation à vos transactions",
       "spending_getSettings": "Voir les paramètres du suivi des dépenses",
-      "spending_updateSettings": "Modifier les paramètres du suivi des dépenses",
+      "spending-settings_updateSettings": "Modifier les paramètres du suivi des dépenses",
       "contributionLimits_getAll": "Consulter les plafonds de cotisation",
       "contributionLimits_create": "Définir les plafonds de cotisation",
       "contributionLimits_update": "Modifier les plafonds de cotisation",
@@ -1946,6 +1946,10 @@
       "spending": {
         "name": "Dépenses",
         "description": "Consulter les rapports de dépenses agrégés et les catégories, et gérer les règles qui catégorisent automatiquement les transactions"
+      },
+      "spending-settings": {
+        "name": "Paramètres des dépenses",
+        "description": "Activer ou désactiver Dépenses et choisir les comptes et catégories suivis"
       },
       "budgets": {
         "name": "Gestion des budgets",

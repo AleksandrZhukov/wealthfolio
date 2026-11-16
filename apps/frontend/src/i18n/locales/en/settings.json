@@ -1813,7 +1813,7 @@
       "spending_deleteRule": "Delete auto-categorization rules",
       "spending_rerunRules": "Re-apply categorization rules to your transactions",
       "spending_getSettings": "View Spending settings",
-      "spending_updateSettings": "Change Spending settings",
+      "spending-settings_updateSettings": "Change Spending settings",
       "contributionLimits_getAll": "View contribution limits",
       "contributionLimits_create": "Set contribution limits",
       "contributionLimits_update": "Modify contribution limits",
@@ -1894,6 +1894,10 @@
       "spending": {
         "name": "Spending",
         "description": "View aggregate spending reports and categories, and manage categorization rules that auto-tag transactions"
+      },
+      "spending-settings": {
+        "name": "Spending Settings",
+        "description": "Turn Spending on or off and choose which accounts and categories it tracks"
       },
       "budgets": {
         "name": "Budget Management",

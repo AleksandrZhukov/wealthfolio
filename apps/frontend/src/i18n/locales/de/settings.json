@@ -1813,7 +1813,7 @@
       "spending_deleteRule": "Regeln zur automatischen Kategorisierung löschen",
       "spending_rerunRules": "Kategorisierungsregeln erneut auf Ihre Transaktionen anwenden",
       "spending_getSettings": "Einstellungen der Ausgabenfunktion anzeigen",
-      "spending_updateSettings": "Einstellungen der Ausgabenfunktion ändern",
+      "spending-settings_updateSettings": "Einstellungen der Ausgabenfunktion ändern",
       "contributionLimits_getAll": "Beitragsgrenzen anzeigen",
       "contributionLimits_create": "Beitragsgrenzen festlegen",
       "contributionLimits_update": "Beitragsgrenzen ändern",
@@ -1894,6 +1894,10 @@
       "spending": {
         "name": "Ausgaben",
         "description": "Zusammengefasste Ausgabenberichte und Kategorien anzeigen sowie Regeln zur automatischen Kategorisierung von Transaktionen verwalten"
+      },
+      "spending-settings": {
+        "name": "Ausgaben-Einstellungen",
+        "description": "Ausgaben ein- oder ausschalten und festlegen, welche Konten und Kategorien erfasst werden"
       },
       "budgets": {
         "name": "Budgetverwaltung",

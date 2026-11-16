@@ -1813,7 +1813,7 @@
       "spending_deleteRule": "刪除自動分類規則",
       "spending_rerunRules": "對交易重新套用分類規則",
       "spending_getSettings": "檢視支出功能設定",
-      "spending_updateSettings": "變更支出功能設定",
+      "spending-settings_updateSettings": "變更支出功能設定",
       "contributionLimits_getAll": "查看提撥額度",
       "contributionLimits_create": "設定提撥額度",
       "contributionLimits_update": "修改提撥額度",
@@ -1894,6 +1894,10 @@
       "spending": {
         "name": "支出",
         "description": "查看彙總支出報告及類別，並管理自動標記交易的分類規則"
+      },
+      "spending-settings": {
+        "name": "支出設定",
+        "description": "開啟或關閉支出功能，並選擇要追蹤的帳戶和類別"
       },
       "budgets": {
         "name": "預算管理",

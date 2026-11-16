@@ -1786,7 +1786,7 @@
       "spending_deleteRule": "자동 분류 규칙 삭제",
       "spending_rerunRules": "거래에 분류 규칙 다시 적용",
       "spending_getSettings": "지출 기능 설정 보기",
-      "spending_updateSettings": "지출 기능 설정 변경",
+      "spending-settings_updateSettings": "지출 기능 설정 변경",
       "contributionLimits_getAll": "납입 한도 보기",
       "contributionLimits_create": "납입 한도 설정",
       "contributionLimits_update": "납입 한도 수정",
@@ -1867,6 +1867,10 @@
       "spending": {
         "name": "지출",
         "description": "집계된 지출 보고서와 카테고리를 보고 거래를 자동 태그하는 분류 규칙 관리"
+      },
+      "spending-settings": {
+        "name": "지출 설정",
+        "description": "지출 기능을 켜거나 끄고 추적할 계좌와 카테고리를 선택합니다"
       },
       "budgets": {
         "name": "예산 관리",
