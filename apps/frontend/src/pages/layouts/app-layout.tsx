@@ -73,7 +73,7 @@ const AppLayoutContent = () => {
   // Each tab-bar and menu destination is a tab with its own stack of screens;
   // add-on pages are destinations too, but replace one another as before.
   const tabsKey = [
-    ...[...navigation.primary, ...(navigation.secondary ?? [])].map((item) => item.href),
+    ...[...navigation.allPrimary, ...(navigation.secondary ?? [])].map((item) => item.href),
     "/connect",
   ].join("\n");
   const addonsKey = (navigation.addons ?? []).map((item) => item.href).join("\n");

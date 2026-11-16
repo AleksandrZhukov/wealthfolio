@@ -1599,6 +1599,8 @@
   },
   "appearance_navigation_title": "Navegación",
   "appearance_navigation_description": "Elige cómo navegas en pantallas grandes.",
+  "appearance_menu_items_title": "Elementos del menú",
+  "appearance_menu_items_description": "Oculta de la navegación las páginas que no usas. Las páginas ocultas siguen disponibles en la búsqueda.",
   "addons_pin_to_navigation": "Fijar {{name}} en la navegación",
   "addons_unpin_from_navigation": "Quitar {{name}} de la navegación",
   "addons_pin_tooltip": "Fijar en la navegación",

@@ -1539,6 +1539,8 @@
   },
   "appearance_navigation_title": "导航",
   "appearance_navigation_description": "选择在大屏幕上的导航方式。",
+  "appearance_menu_items_title": "菜单项",
+  "appearance_menu_items_description": "在导航中隐藏不使用的页面。隐藏的页面仍可通过搜索打开。",
   "addons_pin_to_navigation": "将 {{name}} 固定到导航栏",
   "addons_unpin_from_navigation": "从导航栏取消固定 {{name}}",
   "addons_pin_tooltip": "固定到导航栏",

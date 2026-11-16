@@ -172,11 +172,15 @@ export function MobileNavBar({ navigation }: MobileNavBarProps) {
   const standardMenuItems: NavLink[] = [
     ...primaryItems.slice(visiblePrimaryCount),
     ...secondaryItems,
-    {
-      title: t("common:connect"),
-      href: "/connect",
-      icon: <SyncStatusIcon status={syncStatus} className="size-6" />,
-    },
+    ...(navigation.showConnect
+      ? [
+          {
+            title: t("common:connect"),
+            href: "/connect",
+            icon: <SyncStatusIcon status={syncStatus} className="size-6" />,
+          },
+        ]
+      : []),
   ];
   const moreItems = [...standardMenuItems, ...addonItems];
   const hasMenu = moreItems.length > 0;

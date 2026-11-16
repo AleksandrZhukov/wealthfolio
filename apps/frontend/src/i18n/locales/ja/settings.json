@@ -1539,6 +1539,8 @@
   },
   "appearance_navigation_title": "ナビゲーション",
   "appearance_navigation_description": "大きな画面での操作方法を選択します。",
+  "appearance_menu_items_title": "メニュー項目",
+  "appearance_menu_items_description": "使わないページをナビゲーションから非表示にします。非表示のページは検索から開けます。",
   "addons_pin_to_navigation": "{{name}}をナビゲーションにピン留め",
   "addons_unpin_from_navigation": "{{name}}のピン留めを解除",
   "addons_pin_tooltip": "ナビゲーションにピン留め",

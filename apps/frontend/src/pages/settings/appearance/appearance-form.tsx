@@ -42,6 +42,7 @@ import { useSettingsContext } from "@/lib/settings-provider";
 import { requiredError } from "@/lib/zod-errors";
 import { useNavigationMode } from "@/pages/layouts/navigation/navigation-mode-context";
 import { themeSelectionUpdate } from "@/themes/selection";
+import { NavigationItemsCard } from "./navigation-items-card";
 import { isThemeId, resolveThemeId, themes } from "@/themes/themes";
 
 interface AppearanceFormValues {
@@ -222,6 +223,8 @@ export function AppearanceForm() {
             </CardContent>
           </Card>
         )}
+
+        <NavigationItemsCard />
       </div>
     </Form>
   );

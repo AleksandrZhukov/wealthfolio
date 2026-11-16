@@ -31,7 +31,9 @@ vi.mock("./navigation/navigation-mode-context", () => ({
   NavigationModeProvider: ({ children }: { children: ReactNode }) => children,
   useNavigationMode: () => ({ isLaunchBar: false, isFocusMode: false }),
 }));
-vi.mock("./navigation/app-navigation", () => ({ useNavigation: () => ({ primary: [] }) }));
+vi.mock("./navigation/app-navigation", () => ({
+  useNavigation: () => ({ primary: [], allPrimary: [] }),
+}));
 vi.mock("@/app-screen-routes", () => ({ AppScreenRoutes: () => null }));
 vi.mock("./navigation/app-sidebar", () => ({ AppSidebar: () => null }));
 vi.mock("./navigation/floating-navigation-bar", () => ({ FloatingNavigationBar: () => null }));

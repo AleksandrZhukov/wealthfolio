@@ -1599,6 +1599,8 @@
   },
   "appearance_navigation_title": "Navigazione",
   "appearance_navigation_description": "Scegli come navigare su schermi grandi.",
+  "appearance_menu_items_title": "Voci del menu",
+  "appearance_menu_items_description": "Nascondi dalla navigazione le pagine che non usi. Le pagine nascoste restano disponibili nella ricerca.",
   "addons_pin_to_navigation": "Fissa {{name}} nella navigazione",
   "addons_unpin_from_navigation": "Rimuovi {{name}} dalla navigazione",
   "addons_pin_tooltip": "Fissa nella navigazione",

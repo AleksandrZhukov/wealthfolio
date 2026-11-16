@@ -1,6 +1,7 @@
 import { getDynamicNavItems, subscribeToNavigationUpdates } from "@/addons/addons-runtime-context";
 import { Icons } from "@wealthfolio/ui/components/ui/icons";
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { usePersistentState } from "@/hooks/use-persistent-state";
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { getAddonNavPinKey, useAddonNavigationPins } from "./addon-navigation-pins";
 
@@ -14,7 +15,11 @@ export interface NavLink {
 }
 
 export interface NavigationProps {
+  /** Primary items the menus show: `allPrimary` minus the ones hidden in Appearance settings. */
   primary: NavLink[];
+  /** Every primary item, hidden or not; search and the tab stacks still need hidden pages. */
+  allPrimary: NavLink[];
+  showConnect: boolean;
   secondary?: NavLink[];
   addons?: NavLink[];
   addonMenuItems?: NavLink[];
@@ -22,9 +27,32 @@ export interface NavigationProps {
   setAddonPinned?: (item: NavLink, pinned: boolean) => void;
 }
 
+export const CONNECT_NAV_HREF = "/connect";
+export const HIDDEN_NAV_ITEMS_STORAGE_KEY = "wealthfolio:hidden-nav-items";
+
+/** Hrefs the user hid from the navigation menus, stored per profile. */
+export function useHiddenNavItems() {
+  const [hiddenHrefs, setHiddenHrefs] = usePersistentState<string[]>(
+    HIDDEN_NAV_ITEMS_STORAGE_KEY,
+    [],
+  );
+  const setNavItemHidden = useCallback(
+    (href: string, hidden: boolean) => {
+      setHiddenHrefs((current) => {
+        if (hidden) return current.includes(href) ? current : [...current, href];
+        return current.filter((item) => item !== href);
+      });
+    },
+    [setHiddenHrefs],
+  );
+  return { hiddenHrefs, setNavItemHidden };
+}
+
 type TFunction = ReturnType<typeof useTranslation>["t"];
 
-function buildStaticNavigation(t: TFunction): NavigationProps {
+export function buildStaticNavigation(
+  t: TFunction,
+): Pick<NavigationProps, "primary" | "secondary"> {
   return {
     primary: [
       {
@@ -84,6 +112,7 @@ function buildStaticNavigation(t: TFunction): NavigationProps {
 export function useNavigation() {
   const { t } = useTranslation();
   const staticNavigation = useMemo(() => buildStaticNavigation(t), [t]);
+  const { hiddenHrefs } = useHiddenNavItems();
   const [dynamicItems, setDynamicItems] = useState<NavigationProps["addons"]>([]);
   const { hasConfiguredAddonPins, pinnedAddonIdSet, setAddonPinned, setPinnedAddonIds } =
     useAddonNavigationPins();
@@ -108,7 +137,11 @@ export function useNavigation() {
 
   // Spending lives entirely on the dashboard tab (and its deep-linked pages);
   // no top-level nav entry. Combine static navigation items with addons.
-  const primary = [...staticNavigation.primary];
+  const allPrimary = staticNavigation.primary;
+  const primary = useMemo(
+    () => allPrimary.filter((item) => !hiddenHrefs.includes(item.href)),
+    [allPrimary, hiddenHrefs],
+  );
   const addons = useMemo(() => dynamicItems ?? [], [dynamicItems]);
 
   useEffect(() => {
@@ -132,6 +165,8 @@ export function useNavigation() {
   );
   const navigation: NavigationProps = {
     primary,
+    allPrimary,
+    showConnect: !hiddenHrefs.includes(CONNECT_NAV_HREF),
     secondary: staticNavigation.secondary,
     addons,
     addonMenuItems,

@@ -492,6 +492,8 @@
   "appearance_gain_colors_red_up": "الأحمر للارتفاع والأخضر للانخفاض",
   "appearance_gain_colors_red_up_blue_down": "الأحمر للارتفاع والأزرق للانخفاض",
   "appearance_navigation_description": "اختر طريقة التنقل على الشاشات الكبيرة.",
+  "appearance_menu_items_title": "عناصر القائمة",
+  "appearance_menu_items_description": "أخفِ الصفحات التي لا تستخدمها من التنقل. تبقى الصفحات المخفية متاحة في البحث.",
   "appearance_navigation_title": "التنقل",
   "appearance_theme_description": "اختر لوحة ألوان منسّقة. تتضمن كل سمة مظهرًا فاتحًا وآخر داكنًا.",
   "appearance_mode_title": "وضع العرض",

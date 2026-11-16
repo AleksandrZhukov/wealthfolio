@@ -1557,6 +1557,8 @@
   },
   "appearance_navigation_title": "導覽",
   "appearance_navigation_description": "選取在大螢幕上的導覽方式。",
+  "appearance_menu_items_title": "選單項目",
+  "appearance_menu_items_description": "在導覽中隱藏不使用的頁面。隱藏的頁面仍可透過搜尋開啟。",
   "addons_pin_to_navigation": "將 {{name}} 固定到導覽欄",
   "addons_unpin_from_navigation": "從導覽欄取消固定 {{name}}",
   "addons_pin_tooltip": "固定到導覽欄",

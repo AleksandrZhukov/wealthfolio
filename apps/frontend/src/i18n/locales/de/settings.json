@@ -1557,6 +1557,8 @@
   },
   "appearance_navigation_title": "Navigation",
   "appearance_navigation_description": "Wählen Sie die Navigation auf großen Bildschirmen.",
+  "appearance_menu_items_title": "Menüeinträge",
+  "appearance_menu_items_description": "Blende Seiten, die du nicht nutzt, in der Navigation aus. Ausgeblendete Seiten bleiben über die Suche erreichbar.",
   "addons_pin_to_navigation": "{{name}} an Navigation anheften",
   "addons_unpin_from_navigation": "{{name}} von Navigation lösen",
   "addons_pin_tooltip": "An Navigation anheften",

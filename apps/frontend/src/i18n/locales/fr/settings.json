@@ -1599,6 +1599,8 @@
   },
   "appearance_navigation_title": "Navigation",
   "appearance_navigation_description": "Choisissez votre mode de navigation sur grand écran.",
+  "appearance_menu_items_title": "Éléments du menu",
+  "appearance_menu_items_description": "Masquez de la navigation les pages que vous n’utilisez pas. Les pages masquées restent accessibles via la recherche.",
   "addons_pin_to_navigation": "Épingler {{name}} à la navigation",
   "addons_unpin_from_navigation": "Détacher {{name}} de la navigation",
   "addons_pin_tooltip": "Épingler à la navigation",

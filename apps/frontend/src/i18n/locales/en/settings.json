@@ -1516,6 +1516,8 @@
   },
   "appearance_navigation_title": "Navigation",
   "appearance_navigation_description": "Choose how you navigate on large screens.",
+  "appearance_menu_items_title": "Menu items",
+  "appearance_menu_items_description": "Hide pages you do not use from the navigation. Hidden pages stay available in search.",
   "addons_pin_to_navigation": "Pin {{name}} to navigation",
   "addons_unpin_from_navigation": "Unpin {{name}} from navigation",
   "addons_pin_tooltip": "Pin to navigation",
