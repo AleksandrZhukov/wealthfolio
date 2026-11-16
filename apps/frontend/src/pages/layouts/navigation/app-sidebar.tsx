@@ -1,6 +1,4 @@
-import { isWeb } from "@/adapters";
 import { isAppleDevice } from "@/lib/device-utils";
-import { useAuth } from "@/context/auth-context";
 import { ProfileMenu } from "@/features/profiles/profile-menu";
 import { cn } from "@/lib/utils";
 import {
@@ -29,7 +27,6 @@ const modKey = isAppleDevice() ? "⌘" : "Ctrl";
 export function AppSidebar({ navigation }: AppSidebarProps) {
   const { t } = useTranslation();
   const [collapsed, setCollapsed] = useState(true);
-  const { logout, requiresAuth } = useAuth();
   const addonMenuItems = navigation?.addonMenuItems ?? navigation?.addons ?? [];
 
   return (
@@ -161,31 +158,6 @@ export function AppSidebar({ navigation }: AppSidebarProps) {
               {navigation?.secondary?.map((item) => (
                 <NavItem key={item.title} item={item} collapsed={collapsed} />
               ))}
-              {isWeb && requiresAuth && (
-                <Button
-                  type="button"
-                  variant="ghost"
-                  onClick={logout}
-                  className={cn(
-                    "text-foreground [&_svg]:size-5! mb-1 h-12 rounded-md transition-all duration-300 motion-reduce:transition-colors",
-                    collapsed ? "justify-center" : "justify-start",
-                  )}
-                  title={t("common:layout.logout")}
-                >
-                  <span aria-hidden="true">
-                    <Icons.LogOut className="h-5 w-5" />
-                  </span>
-                  <span
-                    className={cn({
-                      "ms-2 transition-opacity delay-100 duration-300 ease-in-out": true,
-                      "sr-only opacity-0": collapsed,
-                      "block opacity-100": !collapsed,
-                    })}
-                  >
-                    {t("common:layout.logout")}
-                  </span>
-                </Button>
-              )}
               <Separator className="mt-0" />
               <div className="flex justify-end">
                 <Button

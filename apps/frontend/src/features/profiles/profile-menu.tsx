@@ -1,4 +1,6 @@
 import { useTranslation } from "react-i18next";
+import { isWeb } from "@/adapters";
+import { useAuth } from "@/context/auth-context";
 import { cn } from "@/lib/utils";
 import {
   Button,
@@ -17,6 +19,7 @@ import { useProfile } from "./profile-context";
 export function ProfileMenu({ collapsed = false }: { collapsed?: boolean }) {
   const { t } = useTranslation("common");
   const context = useProfile();
+  const { logout, requiresAuth } = useAuth();
   if (!context?.profile) return null;
   const { profile, profileCount, addProfile, manageProfile, lockProfile, switchProfile } = context;
   const singleProfile = profileCount === 1;
@@ -76,6 +79,15 @@ export function ProfileMenu({ collapsed = false }: { collapsed?: boolean }) {
               <DropdownMenuItem className="h-11 gap-3" onClick={lockProfile}>
                 <Icons.Lock className="size-4" />
                 {t("profiles.lock")}
+              </DropdownMenuItem>
+            </>
+          )}
+          {isWeb && requiresAuth && (
+            <>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="h-11 gap-3" onClick={logout}>
+                <Icons.LogOut className="size-4" />
+                {t("layout.logout")}
               </DropdownMenuItem>
             </>
           )}

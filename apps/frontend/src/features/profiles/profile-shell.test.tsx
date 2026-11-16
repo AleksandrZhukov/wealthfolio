@@ -22,6 +22,9 @@ vi.mock("@/adapters", () => ({
   },
   listenPortfolioUpdateStart: mocks.listen,
 }));
+vi.mock("@/context/auth-context", () => ({
+  useAuth: () => ({ logout: vi.fn(), requiresAuth: false }),
+}));
 vi.mock("@tauri-apps/api/event", () => ({
   listen: vi.fn(async (_event: string, callback: () => void) => {
     if (_event === "profile-session-changed") mocks.changed = callback;
