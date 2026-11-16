@@ -6,12 +6,10 @@ interface ValueHistoryToolbarProps {
   hasUnsavedChanges: boolean;
   dirtyCount: number;
   deletedCount: number;
-  onAddRow: () => void;
   onDeleteSelected: () => void;
   onSave: () => void;
   onCancel: () => void;
   isSaving?: boolean;
-  isLiability?: boolean;
 }
 
 export function ValueHistoryToolbar({
@@ -19,23 +17,16 @@ export function ValueHistoryToolbar({
   hasUnsavedChanges,
   dirtyCount,
   deletedCount,
-  onAddRow,
   onDeleteSelected,
   onSave,
   onCancel,
   isSaving = false,
-  isLiability = false,
 }: ValueHistoryToolbarProps) {
   const { t } = useTranslation();
 
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-2">
-        <Button variant="default" size="sm" onClick={onAddRow} disabled={isSaving}>
-          <Icons.Plus className="me-2 h-4 w-4" />
-          {isLiability ? t("asset:valueToolbar.add_balance") : t("asset:valueToolbar.add_value")}
-        </Button>
-
         {selectedRowCount > 0 && (
           <Button variant="outline" size="sm" onClick={onDeleteSelected} disabled={isSaving}>
             <Icons.Trash className="me-2 h-4 w-4" />

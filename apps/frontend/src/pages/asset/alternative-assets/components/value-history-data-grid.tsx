@@ -750,18 +750,19 @@ export function ValueHistoryDataGrid({
 
   return (
     <div className="flex min-h-0 flex-1 flex-col space-y-3">
-      <ValueHistoryToolbar
-        selectedRowCount={selectedRowCount}
-        hasUnsavedChanges={hasUnsavedChanges}
-        dirtyCount={dirtyIds.size}
-        deletedCount={deletedIds.size}
-        onAddRow={() => dataGrid.onRowAdd?.()}
-        onDeleteSelected={handleDeleteSelected}
-        onSave={handleSave}
-        onCancel={handleCancel}
-        isSaving={isPersisting}
-        isLiability={isLiability}
-      />
+      {/* The grid's own sticky "Add row" footer adds rows on desktop, so the toolbar has nothing to show until rows are selected or edited. */}
+      {(selectedRowCount > 0 || hasUnsavedChanges) && (
+        <ValueHistoryToolbar
+          selectedRowCount={selectedRowCount}
+          hasUnsavedChanges={hasUnsavedChanges}
+          dirtyCount={dirtyIds.size}
+          deletedCount={deletedIds.size}
+          onDeleteSelected={handleDeleteSelected}
+          onSave={handleSave}
+          onCancel={handleCancel}
+          isSaving={isPersisting}
+        />
+      )}
 
       <div className="min-h-0 flex-1">
         <DataGrid {...dataGrid} stretchColumns height="calc(100vh - 340px)" />
