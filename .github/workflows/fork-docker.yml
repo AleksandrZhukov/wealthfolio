@@ -13,7 +13,8 @@ permissions:
   packages: write
 
 env:
-  IMAGE: ghcr.io/${{ github.repository_owner }}/wealthfolio
+  # GHCR rejects upper case in image names; the owner is AleksandrZhukov.
+  IMAGE: ghcr.io/aleksandrzhukov/wealthfolio
 
 jobs:
   build:
