@@ -1,4 +1,4 @@
-# Wealthfolio fork (`wealthsimple` branch)
+# Wealthfolio fork (`extended` branch)
 
 This branch is upstream Wealthfolio at a release tag plus a few patches. It is a
 drop-in replacement for the official Docker image. It adds no database
