@@ -14,7 +14,7 @@ change only the image:
 ```yaml
 services:
   wealthfolio:
-    image: ghcr.io/aleksandrzhukov/wealthfolio:latest # or a fixed tag, e.g. 3.13.1-ws42
+    image: ghcr.io/aleksandrzhukov/wealthfolio:latest # or a fixed tag, e.g. 3.13.1-ws43
     init: true # the server is PID 1 and ignores SIGTERM; without this every restart waits 10 s
 ```
 
@@ -55,7 +55,7 @@ Patches that upstream merges are dropped from this branch on the next rebase.
 
 ## Building
 
-Pushing a tag like `3.13.1-ws42` runs
+Pushing a tag like `3.13.1-ws43` runs
 [.github/workflows/fork-docker.yml](.github/workflows/fork-docker.yml), which
 builds both architectures, runs the encryption smoke test and publishes to GHCR.
 To build locally: `docker build -t wealthfolio .`.
